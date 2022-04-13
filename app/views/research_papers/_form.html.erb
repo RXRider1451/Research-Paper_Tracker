@@ -1,0 +1,47 @@
+<%= form_with(model: research_paper) do |form| %>
+  <% if research_paper.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(research_paper.errors.count, "error") %> prohibited this research_paper from being saved:</h2>
+
+      <ul>
+        <% research_paper.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :paper_name, style: "display: block" %>
+    <%= form.text_field :paper_name %>
+  </div>
+
+  <div>
+    <%= form.label :link, style: "display: block" %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div>
+    <%= form.label :authors, style: "display: block" %>
+    <%= form.text_field :authors %>
+  </div>
+
+  <div>
+    <%= form.label :style_or_type, style: "display: block" %>
+    <%= form.text_field :style_or_type %>
+  </div>
+
+  <div>
+    <%= form.label :cross_references, style: "display: block" %>
+    <%= form.text_area :cross_references %>
+  </div>
+
+  <div>
+    <%= form.label :summary, style: "display: block" %>
+    <%= form.text_area :summary %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

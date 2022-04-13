@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @priority_list %>
+
+<div>
+  <%= link_to "Edit this priority list", edit_priority_list_path(@priority_list) %> |
+  <%= link_to "Back to priority lists", priority_lists_path %>
+
+  <%= button_to "Destroy this priority list", @priority_list, method: :delete %>
+</div>

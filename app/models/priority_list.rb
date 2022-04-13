@@ -1,0 +1,2 @@
+class PriorityList < ApplicationRecord
+end

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Priority lists</h1>
+
+<div id="priority_lists">
+  <% @priority_lists.each do |priority_list| %>
+    <%= render priority_list %>
+    <p>
+      <%= link_to "Show this priority list", priority_list %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New priority list", new_priority_list_path %>

@@ -1,0 +1,366 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Research papers</h1>
+
+
+
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  .listItem{
+    background-color: red;
+    width:100%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border: solid 6px black;
+  }
+
+  .paperName{
+    font-size: 120%;
+  }
+
+  .author{
+
+  }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sortableList{
+    <!-- padding: 100px; -->
+  }
+
+</style>
+
+
+
+<div id="research_papers">
+  <div id="sortableList">
+
+    <!-- <div class = "listItem" data-id="1">
+      <div class="info">
+        <p class = "paperName">Paper Name</p>
+        <p class = "author">Author</p>
+      </div>
+    </div>
+
+    <div class = "listItem" data-id="2">
+      <div class="info">
+        <p class = "paperName">Paper Name2</p>
+        <p class = "author">Author</p>
+      </div>
+    </div> -->
+
+
+  </div>
+
+
+
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
+  <!-- Import JQuery -->
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+  <script>
+  //Global Variables
+  var currentPriorityList = '<%=@currPriorityList.priority_list%>';
+  console.log("Current Priority List:");
+  console.log(currentPriorityList);
+  var currentPriorityList = currentPriorityList.split('~');
+  var allResearchPapers = []
+
+
+
+  checkForPendingPapers();
+
+
+  //Note, fields are delimited using ~
+
+  class ResearchPaperItem{
+    constructor(id, paper_name, link){
+      this.id = id;
+      this.paper_name = paper_name;
+      this.link = link;
+      this.authors = []
+      this.style = "";
+      this.cross_references = []
+      this.summary = ""
+    }
+
+    //Getters and Setters
+
+    setId(id){
+      this.id = id;
+    }
+
+    setPaperName(paper_name){
+      this.paper_name = paper_name;
+    }
+
+    setLink(link){
+      this.link = link;
+    }
+
+    addAuthor(author){
+      this.authors.push(author);
+    }
+
+    addCrossRef(crossRef){
+      this.cross_references.push(crossRef);
+    }
+
+    setStyle(style){
+      this.style = style;
+    }
+
+    setSummary(summary){
+      this.summary = summary;
+    }
+
+    getId(){
+      return this.id;
+    }
+
+    getPaperName(){
+      return this.paper_name;
+    }
+
+    getLink(){
+      return this.link;
+    }
+
+    getStyle(){
+      return this.style;
+    }
+
+    returnAuthorString(){
+      var authorString = "";
+      for(var i =0; i<this.authors.length; i++){
+        authorString += this.authors[i];
+        if(i+1<this.authors.size){
+          authorString+="~"
+        }
+      }
+    }
+
+    returnCrossRefString(){
+      var refString = "";
+      for(var i =0; i<this.cross_references.length; i++){
+        refString += this.cross_references[i];
+        if(i+1<this.cross_references.size){
+          refString+="~"
+        }
+      }
+    }
+
+    getSummary(){
+      return this.summary;
+    }
+
+    returnFirstAuthor(){
+      return this.authors[0];
+    }
+
+    returnListItem(){
+      var listItem = document.createElement('div');
+      listItem.setAttribute('class','listItem');
+      listItem.setAttribute('data-id',this.id);
+
+      var infoDiv = document.createElement('div');
+      infoDiv.setAttribute('class','info');
+
+      var paperName = document.createElement('p');
+      paperName.setAttribute('class','paperName');
+      paperName.innerHTML = this.paper_name;
+
+      var author = document.createElement('p');
+      author.setAttribute('class','author');
+      author.innerHTML = this.returnFirstAuthor();
+
+      infoDiv.appendChild(paperName);
+      infoDiv.appendChild(author);
+
+      var that = this;
+
+      var btnEdit = document.createElement('button');
+      btnEdit.innerHTML = "Edit";
+      btnEdit.setAttribute('action','PUT');
+      btnEdit.onclick = function(ev){
+        location.href='research_papers/'+that.id + '/edit';
+      }
+
+      var form = document.createElement('form');
+      form.setAttribute('method','post');
+      form.setAttribute('action','research_papers/'+that.id);
+
+      var input = document.createElement('input');
+      input.setAttribute('type','hidden');
+      input.setAttribute('name','_method');
+      input.setAttribute('value','delete');
+      input.setAttribute('autocomplete','off');
+
+      var btnDelete = document.createElement('button');
+      btnDelete.innerHTML = "Delete";
+      btnDelete.setAttribute('type','submit');
+      btnDelete.onclick = function(ev){
+        console.log(currentPriorityList);
+        console.log(that.id);
+        removeFromPriorityList(currentPriorityList, that.id);
+        console.log(currentPriorityList);
+        console.log("Got here");
+        var priorityString = createPriorityListString(currentPriorityList);
+        console.log("After Update: "+ priorityString);
+        updatePriorityList(priorityString); // THIS IS NOT WORKING
+        form.submit();
+      }
+
+      form.appendChild(input);
+      form.appendChild(btnDelete);
+
+      listItem.appendChild(form);
+      listItem.appendChild(infoDiv);
+
+      listItem.appendChild(btnEdit);
+      listItem.appendChild(btnDelete);
+
+      return listItem;
+    }
+
+
+   }
+
+   function createPriorityListString(prioritisedList){
+     var priorityListString = "";
+     for(var i = 0;i<prioritisedList.length;i++){
+       priorityListString+=prioritisedList[i];
+       if(i+1<prioritisedList.length){
+         priorityListString+="~";
+       }
+     }
+
+     return priorityListString;
+   }
+
+
+     function removeFromPriorityList(currentPriorityList, id){
+       for(var i =0; i<currentPriorityList.length;i++){
+         if(currentPriorityList[i]==id){
+           currentPriorityList.splice(i,1);
+           return;
+         }
+       }
+     }
+
+     function addToPriorityList(id){
+       currentPriorityList.push(id);
+     }
+
+     function updatePriorityList(priorityListString){
+       console.log("Updating Priority List with this string: ");
+       console.log(priorityListString);
+       $.ajax({
+         url: "/research_papers_update_priority",
+         type: "post",
+         data: {
+             priorityList: priorityListString,
+         },
+         success: function() {
+             //alert('Updated Successfully');
+             console.log("Updated Priority Successfully");
+             //window.location.reload();
+         },
+         error: function() {
+             alert('Error');
+         }
+     });
+     }
+
+
+
+
+
+
+
+     <% @research_papers.each do |research_paper| %>
+       var researchPaper = new ResearchPaperItem('<%=research_paper.id%>','<%=research_paper.paper_name%>', '<%=research_paper.link%>');
+       allResearchPapers.push(researchPaper);
+       //list.appendChild(researchPaper.returnListItem());
+     <% end %>
+
+
+     displayPrioritisedList(currentPriorityList);
+
+
+
+
+
+     function checkForPendingPapers(){
+       //Check if we have a pending paper to add to the Priority List
+       var counter = 0;
+
+       <% @research_papers.each do |research_paper| %>
+        counter = counter+1
+       <% end %>
+       console.log(counter);
+       console.log(currentPriorityList.length);
+       if(counter !=0){
+         //If we have an extra paper that isn't counted in our priority list
+         if(counter-1 == currentPriorityList.length){
+           console.log("We have a pending paper");
+           addToPriorityList('<%=@recentlyAddedPaper.id%>');
+           updatePriorityList(createPriorityListString(currentPriorityList));
+           //window.location.reload();
+         }
+       }
+     }
+
+
+
+
+  function displayPrioritisedList(currentPriorityList){
+     var list = document.getElementById('sortableList');
+
+    for(var i =0; i<currentPriorityList.length;i++){
+        var currPriority = currentPriorityList[i];
+        for(var j =0; j<allResearchPapers.length; j++){
+          if(allResearchPapers[j].getId()==currPriority){
+            list.appendChild(allResearchPapers[j].returnListItem());
+            break;
+          }
+        }
+    }
+  }
+
+  const dragArea = document.querySelector("#sortableList");
+  var sortableList = new Sortable(dragArea,{
+    animation: 350,
+
+    onUpdate: function(ev){
+
+      var prioritisedList = sortableList.toArray();
+      //Update Priority List with new Sorting
+      console.log("Sorting Changed");
+      console.log(prioritisedList);
+      //sortableList.save();
+      var priorityListString = createPriorityListString(prioritisedList);
+
+      console.log("Priority List String: ");
+      console.log(priorityListString);
+
+      updatePriorityList(priorityListString);
+
+    },
+
+  });
+
+</script>
+
+<%= link_to "New research paper", new_research_paper_path %>

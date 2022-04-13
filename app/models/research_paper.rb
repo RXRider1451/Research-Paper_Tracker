@@ -1,0 +1,2 @@
+class ResearchPaper < ApplicationRecord
+end
