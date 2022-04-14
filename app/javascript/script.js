@@ -107,7 +107,7 @@
 
           var author = document.createElement('p');
           author.setAttribute('class', 'author');
-          author.innerHTML = this.returnAuthorString();
+          author.innerHTML = this.returnFirstAuthor();
 
 
 
