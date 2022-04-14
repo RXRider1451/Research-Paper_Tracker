@@ -60,17 +60,19 @@
           var authorString = "";
           for (var i = 0; i < this.authors.length; i++) {
               authorString += this.authors[i];
-              if (i + 1 < this.authors.size) {
-                  authorString += "~"
+              if (i + 1 < this.authors.length) {
+                  console.log("There's another author");
+                  authorString += ", "
               }
           }
+          return authorString;
       }
 
       returnCrossRefString() {
           var refString = "";
           for (var i = 0; i < this.cross_references.length; i++) {
               refString += this.cross_references[i];
-              if (i + 1 < this.cross_references.size) {
+              if (i + 1 < this.cross_references.length) {
                   refString += "~"
               }
           }
@@ -83,6 +85,13 @@
       returnFirstAuthor() {
           return this.authors[0];
       }
+
+      populateAuthorArray(authorString) {
+          this.authors = authorString.split('~');
+          console.log("Author Array");
+          console.log(this.authors);
+      }
+
 
       returnListItem() {
           var listItem = document.createElement('div');
@@ -98,7 +107,9 @@
 
           var author = document.createElement('p');
           author.setAttribute('class', 'author');
-          author.innerHTML = this.returnFirstAuthor();
+          author.innerHTML = this.returnAuthorString();
+
+
 
           infoDiv.appendChild(paperName);
           infoDiv.appendChild(author);

@@ -11,37 +11,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :paper_name, style: "display: block" %>
-    <%= form.text_field :paper_name %>
+  <div class="form-inputs">
+    <%= form.label :paper_name, style: "display: none" %>
+    <%= form.text_field :paper_name, class: "form-control input-text", style:"width: 500px", placeholder: "Name of the Paper"  %>
   </div>
 
-  <div>
-    <%= form.label :link, style: "display: block" %>
-    <%= form.text_field :link %>
+  <div class="form-inputs">
+    <%= form.label :link, style: "display: none" %>
+    <%= form.text_field :link, class: "form-control input-text", style:"width: 500px", placeholder: "Link to the paper" %>
   </div>
 
-  <div>
-    <%= form.label :authors, style: "display: block" %>
-    <%= form.text_field :authors %>
+  <div class="form-inputs">
+    <%= form.label :authors, style: "display: none" %>
+    <%= form.text_field :authors, class: "form-control input-text", style:"width: 500px", placeholder: "Names of Authors (seperated with ~)" %>
   </div>
 
-  <div>
-    <%= form.label :style_or_type, style: "display: block" %>
-    <%= form.text_field :style_or_type %>
+  <div class="form-inputs">
+    <%= form.label :style_or_type, style: "display: none" %>
+    <%= form.text_field :style_or_type, class: "form-control input-text", style:"width: 500px", placeholder: "Style/Type" %>
   </div>
 
-  <div>
-    <%= form.label :cross_references, style: "display: block" %>
-    <%= form.text_area :cross_references %>
+  <div class="form-inputs">
+    <%= form.label :cross_references, style: "display: none" %>
+    <%= form.text_area :cross_references, class: "form-control input-text", style:"width: 500px", placeholder: "Cross References (seperated with ~)" %>
   </div>
 
-  <div>
-    <%= form.label :summary, style: "display: block" %>
-    <%= form.text_area :summary %>
+  <div class="form-inputs">
+    <%= form.label :summary, style: "display: none" %>
+    <%= form.text_area :summary, class: "form-control input-text", style:"width: 500px", placeholder: "Summary" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-inputs" style="width: fit-content; margin: auto;">
+    <%= form.submit class: "btn btn-success", value: "Update"%>
   </div>
 <% end %>

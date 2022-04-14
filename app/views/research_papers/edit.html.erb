@@ -1,10 +1,14 @@
-<h1>Editing research paper</h1>
+<div class = "mycard center-in-screen" style="padding:20px; width: fit-content;">
+  
+  <h1 id="main-heading">Edit</h1>
 
-<%= render "form", research_paper: @research_paper %>
+  <%= render "form", research_paper: @research_paper %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this research paper", @research_paper %> |
-  <%= link_to "Back to research papers", research_papers_path %>
+    <div>
+      <%# <%= link_to "Show this research paper", @research_paper, class: "btn btn-secondary" %> 
+      <%= link_to "Back", research_papers_path, class: "btn btn-dark" %>
+    </div>
+
 </div>
