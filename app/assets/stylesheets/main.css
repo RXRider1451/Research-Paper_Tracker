@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#main-heading {
+    font-size: 350%;
+    position: relative;
+    width: fit-content;
+    margin: auto auto;
+}
+
+#research_papers {
+    width: fit-content;
+}
+
+.listItem {
+    /* background-color: red;
+    border: solid 6px black; */
+    width: 80%;
+    height: 120px;
+    padding: 10px;
+    position: relative;
+}
+
+.paperName {
+    font-size: 120%;
+    width: auto;
+}
+
+.author {
+    width: auto;
+}
+
+.new-button {
+    /* margin: 0 auto; */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    float: left;
+    position: relative;
+    top: 25%;
+}
+
+#sortableList {
+    width: 600px
+}
+
+.mycard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    /* 5px rounded corners */
+}
+
+.button-control {
+    width: auto;
+    margin: 5px;
+}
+
+.button-control-group {
+    width: fit-content;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    float: right;
+}
+
+.container {
+    position: relative;
+}
+
+p {
+    margin-bottom: 0 !important;
+}
