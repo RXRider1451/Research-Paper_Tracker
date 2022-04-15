@@ -1,4 +1,7 @@
 <div id="<%= dom_id research_paper %>">
+
+  <fieldset>
+    <legend>Basic Info</legend>
   <p>
     <strong>Paper name:</strong>
     <%= research_paper.paper_name %>
@@ -24,6 +27,12 @@
     <%= research_paper.cross_references %>
   </p>
 
+  </fieldset>
+
+<br>
+
+  <fieldset>
+    <legend>Summary</legend>
   <p>
     <strong>Purpose:</strong>
     <%= research_paper.purpose %>
@@ -43,5 +52,5 @@
     <strong>Results:</strong>
     <%= research_paper.results %>
   </p>
-
+</fieldset>
 </div>

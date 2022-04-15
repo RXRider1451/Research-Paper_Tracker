@@ -193,15 +193,20 @@
           btnDelete.setAttribute('type', 'submit');
           btnDelete.setAttribute('class', 'button-control btn btn-danger');
           btnDelete.onclick = function(ev) {
-              console.log(currentPriorityList);
-              console.log(that.id);
-              removeFromPriorityList(currentPriorityList, that.id);
-              console.log(currentPriorityList);
-              console.log("Got here");
-              var priorityString = createPriorityListString(currentPriorityList);
-              console.log("After Update: " + priorityString);
-              updatePriorityList(priorityString); // THIS IS NOT WORKING
-              form.submit();
+
+              var confirm = window.confirm("Are you sure you want to remove this paper?");
+              if(confirm){
+                console.log(currentPriorityList);
+                console.log(that.id);
+                removeFromPriorityList(currentPriorityList, that.id);
+                console.log(currentPriorityList);
+                console.log("Got here");
+                var priorityString = createPriorityListString(currentPriorityList);
+                console.log("After Update: " + priorityString);
+                updatePriorityList(priorityString); // THIS IS NOT WORKING
+                form.submit();
+              }
+
           }
 
           var btnShow = document.createElement('button');
