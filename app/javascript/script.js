@@ -1,5 +1,6 @@
   //Note, fields are delimited using ~
-  class ResearchPaperItem {
+  //Assigning class to variable to remove re-declaration issue
+  var ResearchPaperItem = class ResearchPaperItem {
       constructor(id, paper_name, link) {
           this.id = id;
           this.paper_name = paper_name;
@@ -237,7 +238,7 @@
       }
   }
 
-  const dragArea = document.querySelector("#sortableList");
+  var dragArea = document.querySelector("#sortableList");
   var sortableList = new Sortable(dragArea, {
       animation: 250,
 
