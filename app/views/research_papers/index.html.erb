@@ -22,10 +22,13 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 
-  <%= javascript_include_tag "script" %>
+
 
 
   <script>
+
+
+
   //Global Variables
   var currentPriorityList = '<%=@currPriorityList.priority_list%>';
   console.log("Current Priority List:");
@@ -38,23 +41,49 @@
   checkForPendingPapers();
 
 
-     <% @research_papers.each do |research_paper| %>
-       var researchPaper = new ResearchPaperItem('<%=research_paper.id%>','<%=research_paper.paper_name%>', '<%=research_paper.link%>');
-        researchPaper.populateAuthorArray('<%=research_paper.authors%>');
+  populateResearchPaperObjects();
 
 
-       allResearchPapers.push(researchPaper);
-       //list.appendChild(researchPaper.returnListItem());
-     <% end %>
+  displayPrioritisedList(currentPriorityList);
+
+  var dragArea = document.querySelector("#sortableList");
+  var sortableList = new Sortable(dragArea, {
+      animation: 250,
+
+      onUpdate: function(ev) {
+
+          var prioritisedList = sortableList.toArray();
+          //Update Priority List with new Sorting
+          console.log("Sorting Changed");
+          console.log(prioritisedList);
+          var priorityListString = createPriorityListString(prioritisedList);
+
+          console.log("Priority List String: ");
+          console.log(priorityListString);
+
+          updatePriorityList(priorityListString);
+
+      },
+
+  });
 
 
-     displayPrioritisedList(currentPriorityList);
+  function populateResearchPaperObjects(){
+    <% @research_papers.each do |research_paper| %>
+      var researchPaper = new ResearchPaperItem('<%=research_paper.id%>','<%=research_paper.paper_name%>');
+       researchPaper.populateAuthorArray('<%=research_paper.authors%>');
+       researchPaper.setLink('<%=research_paper.link%>');
+       researchPaper.setStyle('<%=research_paper.style_or_type%>');
+       researchPaper.setPurpose('<%=research_paper.purpose%>');
+       researchPaper.setMethod('<%=research_paper.method%>');
+       researchPaper.setDataset('<%=research_paper.dataset%>');
+       researchPaper.setResults('<%=research_paper.results%>');
 
+      allResearchPapers.push(researchPaper);
+    <% end %>
+  }
 
-
-
-
-     function checkForPendingPapers(){
+  function checkForPendingPapers(){
        //Check if we have a pending paper to add to the Priority List
        var counter = 0;
 

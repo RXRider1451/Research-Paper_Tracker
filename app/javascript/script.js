@@ -1,17 +1,52 @@
   //Note, fields are delimited using ~
   //Assigning class to variable to remove re-declaration issue
   var ResearchPaperItem = class ResearchPaperItem {
-      constructor(id, paper_name, link) {
+      constructor(id, paper_name) {
           this.id = id;
           this.paper_name = paper_name;
-          this.link = link;
-          this.authors = []
+          this.link = "";
+          this.authors = [];
           this.style = "";
-          this.cross_references = []
-          this.summary = ""
+          this.cross_references = [];
+          this.purpose = "";
+          this.dataset = "";
+          this.method = "";
+          this.results = "";
       }
 
       //Getters and Setters
+
+      setPurpose(purpose){
+        this.purpose = purpose;
+      }
+
+      getPurpose(){
+        return this.purpose;
+      }
+
+      setDataset(dataset){
+        this.dataset = dataset;
+      }
+
+      getDataset(){
+        return this.dataset;
+      }
+
+      setMethod(method){
+        this.method = method;
+      }
+
+      getMethod(){
+        return this.method;
+      }
+
+      setResults(results){
+        this.results = results;
+      }
+
+      getResults(){
+        return this.results;
+      }
 
       setId(id) {
           this.id = id;
@@ -105,17 +140,33 @@
           var paperName = document.createElement('p');
           paperName.setAttribute('class', 'paperName');
           paperName.innerHTML = this.paper_name;
-
-          var author = document.createElement('p');
-          author.setAttribute('class', 'author');
-          author.innerHTML = this.returnFirstAuthor();
-
-
-
           infoDiv.appendChild(paperName);
-          infoDiv.appendChild(author);
+
+          if(this.style != ""){
+            var style_or_type = document.createElement('p');
+            style_or_type.innerHTML = this.style;
+            infoDiv.appendChild(style_or_type);
+          }
+
+          if(this.authors.length != 0){
+            var author = document.createElement('p');
+            author.setAttribute('class', 'author');
+            author.innerHTML = this.returnFirstAuthor();
+            infoDiv.appendChild(author);
+          }
+
+          if(this.link != ""){
+            var link = document.createElement('a');
+            link.setAttribute('href',this.link);
+            link.innerHTML = "Link to the paper";
+            infoDiv.appendChild(link);
+          }
+
+
 
           var that = this;
+          var btnGroup = document.createElement('div');
+          btnGroup.setAttribute('class', 'button-control-group');
 
           var btnEdit = document.createElement('button');
           btnEdit.setAttribute('class', 'button-control btn btn-success');
@@ -135,8 +186,7 @@
           input.setAttribute('value', 'delete');
           input.setAttribute('autocomplete', 'off');
 
-          var btnGroup = document.createElement('div');
-          btnGroup.setAttribute('class', 'button-control-group');
+
 
           var btnDelete = document.createElement('button');
           btnDelete.innerHTML = "Delete";
@@ -154,6 +204,14 @@
               form.submit();
           }
 
+          var btnShow = document.createElement('button');
+          btnShow.setAttribute('class', 'button-control btn btn-primary');
+          btnShow.innerHTML = "Show";
+          btnShow.setAttribute('action', 'GET');
+          btnShow.onclick = function(ev) {
+              location.href = 'research_papers/' + that.id;
+          }
+
           form.appendChild(input);
           form.appendChild(btnDelete);
 
@@ -163,6 +221,7 @@
 
           btnGroup.appendChild(btnEdit);
           btnGroup.appendChild(btnDelete);
+          btnGroup.appendChild(btnShow);
 
           var container = document.createElement('div');
           container.setAttribute('class', 'container');
@@ -237,24 +296,3 @@
           }
       }
   }
-
-  var dragArea = document.querySelector("#sortableList");
-  var sortableList = new Sortable(dragArea, {
-      animation: 250,
-
-      onUpdate: function(ev) {
-
-          var prioritisedList = sortableList.toArray();
-          //Update Priority List with new Sorting
-          console.log("Sorting Changed");
-          console.log(prioritisedList);
-          var priorityListString = createPriorityListString(prioritisedList);
-
-          console.log("Priority List String: ");
-          console.log(priorityListString);
-
-          updatePriorityList(priorityListString);
-
-      },
-
-  });

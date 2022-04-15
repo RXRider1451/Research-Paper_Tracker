@@ -20,7 +20,7 @@
     /* background-color: red;
     border: solid 6px black; */
     width: 100%;
-    height: 120px;
+    height: 165px;
     padding: 10px;
     position: relative;
     background-color: white;
@@ -46,7 +46,7 @@
     width: fit-content;
     float: left;
     position: relative;
-    top: 25%;
+
 }
 
 #sortableList {
@@ -93,4 +93,8 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.form-card{
+  max-width: 80%;
 }

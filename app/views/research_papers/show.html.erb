@@ -1,10 +1,15 @@
 <p style="color: green"><%= notice %></p>
+<div class = "mycard center-in-screen form-card" style="padding:20px; width: fit-content;">
 
+  <h1 id="main-heading">Research Paper Details</h1>
+<br>
 <%= render @research_paper %>
 
-<div>
-  <%= link_to "Edit this research paper", edit_research_paper_path(@research_paper) %> |
-  <%= link_to "Back to research papers", research_papers_path %>
+<br>
+  <div style="display:flex; flex-direction:row;">
+    <%= link_to "Back to research papers", research_papers_path, class: "btn btn-dark button-control" %>
+    <%= link_to "Edit this research paper", edit_research_paper_path(@research_paper), class: "btn btn-success button-control" %>
+    <%= button_to "Destroy this research paper", @research_paper, method: :delete, class: "btn btn-danger button-control" %>
+  </div>
 
-  <%= button_to "Destroy this research paper", @research_paper, method: :delete %>
 </div>
