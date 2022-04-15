@@ -10,38 +10,61 @@
       </ul>
     </div>
   <% end %>
+<br>
+  <fieldset>
+    <legend>Basic Info</legend>
+    <div class="form-inputs">
+      <%= form.label :paper_name, style: "display: none" %>
+      <%= form.text_field :paper_name, class: "form-control input-text", style:"width: 500px", placeholder: "Name of the Paper"  %>
+    </div>
 
-  <div class="form-inputs">
-    <%= form.label :paper_name, style: "display: none" %>
-    <%= form.text_field :paper_name, class: "form-control input-text", style:"width: 500px", placeholder: "Name of the Paper"  %>
-  </div>
+    <div class="form-inputs">
+      <%= form.label :link, style: "display: none" %>
+      <%= form.text_field :link, class: "form-control input-text", style:"width: 500px", placeholder: "Link to the paper" %>
+    </div>
 
-  <div class="form-inputs">
-    <%= form.label :link, style: "display: none" %>
-    <%= form.text_field :link, class: "form-control input-text", style:"width: 500px", placeholder: "Link to the paper" %>
-  </div>
+    <div class="form-inputs">
+      <%= form.label :authors, style: "display: none" %>
+      <%= form.text_field :authors, class: "form-control input-text", style:"width: 500px", placeholder: "Names of Authors (seperated with ~)" %>
+    </div>
 
-  <div class="form-inputs">
-    <%= form.label :authors, style: "display: none" %>
-    <%= form.text_field :authors, class: "form-control input-text", style:"width: 500px", placeholder: "Names of Authors (seperated with ~)" %>
-  </div>
+    <div class="form-inputs">
+      <%= form.label :style_or_type, style: "display: none" %>
+      <%= form.text_field :style_or_type, class: "form-control input-text", style:"width: 500px", placeholder: "Style/Type" %>
+    </div>
 
-  <div class="form-inputs">
-    <%= form.label :style_or_type, style: "display: none" %>
-    <%= form.text_field :style_or_type, class: "form-control input-text", style:"width: 500px", placeholder: "Style/Type" %>
-  </div>
+    <div class="form-inputs">
+      <%= form.label :cross_references, style: "display: none" %>
+      <%= form.text_area :cross_references, class: "form-control input-text", style:"width: 500px; display:none;", placeholder: "Cross References (seperated with ~)" %>
+    </div>
+  </fieldset>
 
-  <div class="form-inputs">
-    <%= form.label :cross_references, style: "display: none" %>
-    <%= form.text_area :cross_references, class: "form-control input-text", style:"width: 500px", placeholder: "Cross References (seperated with ~)" %>
-  </div>
+  <br>
 
-  <div class="form-inputs">
-    <%= form.label :summary, style: "display: none" %>
-    <%= form.text_area :summary, class: "form-control input-text", style:"width: 500px", placeholder: "Summary" %>
-  </div>
+  <fieldset>
+    <legend>Summary</legend>
+    <div class="form-inputs">
+      <%= form.label :purpose, style: "display: none" %>
+      <%= form.text_area :purpose, class: "form-control input-text", style:"width: 500px", placeholder: "Purpose" %>
+    </div>
+
+    <div class="form-inputs">
+      <%= form.label :dataset, style: "display: none" %>
+      <%= form.text_area :dataset, class: "form-control input-text", style:"width: 500px", placeholder: "Dataset" %>
+    </div>
+
+    <div class="form-inputs">
+      <%= form.label :method, style: "display: none" %>
+      <%= form.text_area :method, class: "form-control input-text", style:"width: 500px", placeholder: "Method" %>
+    </div>
+
+    <div class="form-inputs">
+      <%= form.label :results, style: "display: none" %>
+      <%= form.text_area :results, class: "form-control input-text", style:"width: 500px", placeholder: "Results" %>
+    </div>
+  </fieldset>
 
   <div class="form-inputs" style="width: fit-content; margin: auto;">
-    <%= form.submit class: "btn btn-success", value: "Update"%>
+    <%= form.submit class: "btn btn-success", value: "Submit"%>
   </div>
 <% end %>
