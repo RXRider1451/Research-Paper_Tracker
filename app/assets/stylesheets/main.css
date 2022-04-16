@@ -98,3 +98,7 @@ p {
 .form-card{
   max-width: 80%;
 }
+
+.width-fit-content{
+  width:fit-content;
+}

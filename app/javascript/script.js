@@ -138,19 +138,20 @@
           infoDiv.setAttribute('class', 'info');
 
           var paperName = document.createElement('p');
-          paperName.setAttribute('class', 'paperName');
+          paperName.setAttribute('class', 'paperName width-fit-content');
           paperName.innerHTML = this.paper_name;
           infoDiv.appendChild(paperName);
 
           if(this.style != ""){
             var style_or_type = document.createElement('p');
             style_or_type.innerHTML = this.style;
+            style_or_type.setAttribute('class','width-fit-content');
             infoDiv.appendChild(style_or_type);
           }
 
           if(this.authors.length != 0){
             var author = document.createElement('p');
-            author.setAttribute('class', 'author');
+            author.setAttribute('class', 'author width-fit-content');
             author.innerHTML = this.returnFirstAuthor();
             infoDiv.appendChild(author);
           }
@@ -158,6 +159,7 @@
           if(this.link != ""){
             var link = document.createElement('a');
             link.setAttribute('href',this.link);
+            link.setAttribute('class','width-fit-content')
             link.innerHTML = "Link to the paper";
             infoDiv.appendChild(link);
           }
