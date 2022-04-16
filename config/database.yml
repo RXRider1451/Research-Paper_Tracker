@@ -76,10 +76,14 @@ test:
 # URL environment variable explicitly:
 #
 production:
- <<: *default
+ encoding: utf8
+ pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+ 
+
+ #<<: *default
  #port: 5432
- database: Research_Paper_Tracker_production
- url: <%= ENV["MY_APP_DATABASE_URL"] %>
+ #database: Research_Paper_Tracker_production
+ #url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
