@@ -78,7 +78,7 @@ test:
 production:
  <<: *default
  port: 5432
- #database: Research_Paper_Tracker_production
+ database: Research_Paper_Tracker_production
  url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
