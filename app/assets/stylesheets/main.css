@@ -50,6 +50,7 @@
     width: fit-content;
     float: left;
     position: relative;
+    max-width: 90%;
 
 }
 
