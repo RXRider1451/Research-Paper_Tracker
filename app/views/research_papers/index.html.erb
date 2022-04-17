@@ -95,6 +95,8 @@
        researchPaper.setMethod('<%=research_paper.method%>');
        researchPaper.setDataset('<%=research_paper.dataset%>');
        researchPaper.setResults('<%=research_paper.results%>');
+       researchPaper.setPublishedYear('<%=research_paper.published_year%>');
+       console.log("Published year is: " + '<%=research_paper.published_year%>');
 
       allResearchPapers.push(researchPaper);
     <% end %>

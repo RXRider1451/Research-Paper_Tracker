@@ -78,6 +78,6 @@ class ResearchPapersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def research_paper_params
-      params.require(:research_paper).permit(:paper_name, :link, :authors, :style_or_type, :cross_references, :summary)
+      params.require(:research_paper).permit(:paper_name, :link, :authors, :style_or_type, :cross_references, :purpose, :dataset, :method,:results,:published_year)
     end
 end

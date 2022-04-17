@@ -12,9 +12,18 @@
           this.dataset = "";
           this.method = "";
           this.results = "";
+          this.published_year = "";
       }
 
       //Getters and Setters
+
+      setPublishedYear(publishedYear){
+        this.published_year = publishedYear;
+      }
+
+      getPublishedYear(){
+        return this.published_year;
+      }
 
       setPurpose(purpose){
         this.purpose = purpose;
@@ -162,6 +171,13 @@
             link.setAttribute('class','width-fit-content')
             link.innerHTML = "Link to the paper";
             infoDiv.appendChild(link);
+          }
+
+          if(this.published_year != ""){
+            var publishedYear = document.createElement('p');
+            publishedYear.setAttribute('class','width-fit-content')
+            publishedYear.innerHTML = this.published_year;
+            infoDiv.appendChild(publishedYear);
           }
 
 
