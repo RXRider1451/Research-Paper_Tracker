@@ -16,7 +16,7 @@
     padding: 10px;
     background-color: whitesmoke;
     max-height: 75%;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
 }
 
