@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root "research_papers#index"
 
   match 'research_papers_update_priority', :to => 'research_papers#update_priority', :via => [:get, :post, :put]
+  match 'priority_lists_create_blank', :to => 'priority_lists#create_blank', :via => [:get, :post, :put]
 end

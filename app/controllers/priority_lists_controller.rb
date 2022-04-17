@@ -1,5 +1,6 @@
 class PriorityListsController < ApplicationController
   before_action :set_priority_list, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /priority_lists or /priority_lists.json
   def index
@@ -32,6 +33,13 @@ class PriorityListsController < ApplicationController
         format.json { render json: @priority_list.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  #Create an empty priority list
+  def create_blank
+    newPriorityList = PriorityList.new
+    newPriorityList.priority_list = ""
+    newPriorityList.save
   end
 
   # PATCH/PUT /priority_lists/1 or /priority_lists/1.json

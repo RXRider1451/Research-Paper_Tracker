@@ -27,18 +27,29 @@
 
   <script>
 
+    //Global Variables
+    var currentPriorityList;
+    var allResearchPapers = [];
 
 
-  //Global Variables
-  var currentPriorityList = '<%=@currPriorityList.priority_list%>';
-  console.log("Current Priority List:");
-  console.log(currentPriorityList);
-  var currentPriorityList = currentPriorityList.split('~');
-  var allResearchPapers = []
+    //Check if we have a priority_list
+    <% if @currPriorityList == nil %>
+      createPriorityList();
+    <% else %>
+      currentPriorityList = '<%=@currPriorityList.priority_list%>';
+      console.log("Current Priority List:");
+      console.log(currentPriorityList);
+      currentPriorityList = currentPriorityList.split('~');
+    <% end %>
+
+    //If we have papers, check if we've added them to the priority list
+    <%  if @firstResearchPaper != nil %>
+      checkForPendingPapers();
+    <% end %>
 
 
 
-  checkForPendingPapers();
+
 
 
   populateResearchPaperObjects();

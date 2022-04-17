@@ -288,6 +288,34 @@
       });
   }
 
+  function createPriorityList() {
+      console.log("Creating a new Empty Priority List");
+
+      $.post('/priority_lists_create_blank', {},
+          function(returnedData){
+               console.log(returnedData);
+      }).fail(function(){
+            console.log("error");
+      });
+
+
+      // $.ajax({
+      //     url: "/priority_lists",
+      //     type: "post",
+      //     data: {
+      //         priority_list: "1",
+      //     },
+      //     success: function() {
+      //         //alert('Updated Successfully');
+      //         console.log("Created New Priority List Successfully");
+      //         window.location.reload();
+      //     },
+      //     error: function() {
+      //         alert('Error');
+      //     }
+      // });
+  }
+
 
 
   function displayPrioritisedList(currentPriorityList) {

@@ -6,6 +6,7 @@ class ResearchPapersController < ApplicationController
     @research_papers = ResearchPaper.all
     @currPriorityList = PriorityList.all.first
     @recentlyAddedPaper = ResearchPaper.all.last
+    @firstResearchPaper = ResearchPaper.all.first
   end
 
   # GET /research_papers/1 or /research_papers/1.json
