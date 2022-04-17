@@ -8,12 +8,16 @@
     position: relative;
     width: fit-content;
     margin: auto auto;
+    margin-top:20px;
 }
 
 #research_papers {
     width: fit-content;
     padding: 10px;
     background-color: whitesmoke;
+    max-height: 75%;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .listItem {
