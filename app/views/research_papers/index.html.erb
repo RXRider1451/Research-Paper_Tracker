@@ -42,8 +42,14 @@
       currentPriorityList = currentPriorityList.split('~');
     <% end %>
 
+    //Remove empty element from priority list
+    if(currentPriorityList[0]==""){
+      currentPriorityList.splice(0,1);
+    }
+
+
     //If we have papers, check if we've added them to the priority list
-    <%  if @firstResearchPaper != nil %>
+    <%  if @firstResearchPaper != nil and @recentlyAddedPaper != nil%>
       checkForPendingPapers();
     <% end %>
 
@@ -99,10 +105,12 @@
        var counter = 0;
 
        <% @research_papers.each do |research_paper| %>
-        counter = counter+1
+        counter = counter+1;
+        console.log("Found a paper");
        <% end %>
        console.log(counter);
        console.log(currentPriorityList.length);
+       console.log(currentPriorityList);
        if(counter !=0){
          //If we have an extra paper that isn't counted in our priority list
          if(counter-1 == currentPriorityList.length){
