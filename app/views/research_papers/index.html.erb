@@ -115,7 +115,9 @@
          //If we have an extra paper that isn't counted in our priority list
          if(counter-1 == currentPriorityList.length){
            console.log("We have a pending paper");
-           addToPriorityList('<%=@recentlyAddedPaper.id%>');
+           <% if @recentlyAddedPaper != nil%>
+            addToPriorityList('<%=@recentlyAddedPaper.id%>');
+           <% end %>
            updatePriorityList(createPriorityListString(currentPriorityList));
            //window.location.reload();
          }
